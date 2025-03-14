@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Ellipse</title>
+    <style>
+        /* 定义椭圆样式 */
+        .ellipse {
+            width: 200px;
+            height: 100px;
+            border-radius: 50%;
+            /* 设置动画，名称为changeGradient，持续时间5秒，无限循环，线性变化 */
+            animation: changeGradient 5s infinite linear; 
+        }
+
+        /* 定义动画关键帧 */
+        @keyframes changeGradient {
+            0% {
+                background: radial-gradient(circle, red, yellow);
+            }
+            50% {
+                background: radial-gradient(circle, green, blue);
+            }
+            100% {
+                background: radial-gradient(circle, red, yellow);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ellipse"></div>
+</body>
+
+</html>
+< img src="D:\1.png" alt="A beautiful scenery" width="500" height="650">
