@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <script>
+    let aStr = prompt("请输入系数a");
+    let bStr = prompt("请输入系数b");
+    let cStr = prompt("请输入系数c");
+
+    let a = parseFloat(aStr);
+    let b = parseFloat(bStr);
+    let c = parseFloat(cStr);
+
+    let delta = b * b - 4 * a * c;
+
+    let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+    let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+    alert("方程的解为x1 = " + x1 + ", x2 = " + x2);
+
+    console.log("方程的解为x1 = " + x1 + ", x2 = " + x2);
+  </script>
+
+</body>
+
+</html>
