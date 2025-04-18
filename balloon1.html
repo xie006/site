@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Million Balloons</title>
+    <style>
+        @keyframes fly {
+            from {
+                top: 700px;
+            }
+
+            to {
+                top: 0px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function Balloon(color, diameter, speed, id) {
+            this.color = color;
+            this.diameter = diameter;
+            this.speed = speed;
+            this.id = id;
+            this.make = function () {
+                let dv = document.createElement('div');
+                dv.id = 'b' + this.id;
+                dv.style.cssText = `width: ${this.diameter}px; height: ${this.diameter}px; border-radius: ${this.diameter / 2}px; background-color: ${this.color}; position: absolute; left: ${(this.id % 100) * 20}px; top: 700px;`;
+                dv.innerHTML = this.id;
+                document.body.appendChild(dv);
+            };
+            this.rise = function () {
+                let dv = document.getElementById('b' + this.id);
+                dv.style.animationName = "fly";
+                dv.style.animationDuration = Math.floor(700 / this.speed) + 's';
+            };
+        }
+
+        const balloonCount = 1000000;
+        for (let i = 0; i < balloonCount; i++) {
+            const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+            const randomDiameter = Math.floor(Math.random() * 50) + 20;
+            const randomSpeed = Math.floor(Math.random() * 20) + 5;
+            let balloon = new Balloon(randomColor, randomDiameter, randomSpeed, i);
+            balloon.make();
+            balloon.rise();
+        }
+    </script>
+</body>
+
+</html>    
