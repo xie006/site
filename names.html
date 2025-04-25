@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <table id="nameTable">
+        <tr>
+            <td>John Doe</td>
+        </tr>
+        <tr>
+            <td>Alice Smith</td>
+        </tr>
+        <tr>
+            <td>Bob Johnson</td>
+        </tr>
+    </table>
+    <script>
+        onload = sortByFirstName;
+        let sortByFirstName = function () {
+            // 获取表格元素
+            let tbl = document.getElementById('nameTable');
+            // 用于存储名字的数组
+            let nameArray = [];
+            // 遍历表格行
+            for (let i = 0; i < tbl.rows.length; i++) {
+                let cell = tbl.rows[i].cells[0];
+                let fullName = cell.innerHTML;
+                let firstName = fullName.split(' ')[0];
+                nameArray.push({
+                    fullName: fullName,
+                    firstName: firstName
+                });
+            }
+            // 对名字数组按名字（first name）排序
+            nameArray.sort((a, b) => {
+                if (a.firstName < b.firstName) {
+                    return -1;
+                }
+                if (a.firstName > b.firstName) {
+                    return 1;
+                }
+                return 0;
+            });
+            // 移除表格所有行
+            while (tbl.rows.length > 0) {
+                tbl.deleteRow(0);
+            }
+            // 将排序后的行添加回表格
+            nameArray.forEach((nameObj) => {
+                let row = document.createElement('tr');
+                let cell = document.createElement('td');
+                cell.innerHTML = nameObj.fullName;
+                row.appendChild(cell);
+                tbl.appendChild(row);
+            });
+        }
+    </script>
+</body>
+
+</html>
