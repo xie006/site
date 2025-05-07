@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <title>Solar System Simulation with Table</title>
+    <style>
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white font-inter flex justify-center items-center min-h-screen m-0">
+    <div id="solar-system" class="relative w-full max-w-6xl h-144">
+        <!-- 太阳 -->
+        <div class="planet absolute rounded-full transition-transform duration-300 ease-in-out hover:scale-110"
+            style="width: 60px; height: 60px; background-color: yellow; top: 50%; left: 50%; transform: translate(-50%, -50%);"
+            onclick="showTable('太阳', '直径约 1392000 千米', '太阳系的中心天体')">
+        </div>
+        <!-- 水星 -->
+        <div class="planet absolute rounded-full transition-transform duration-300 ease-in-out hover:scale-110"
+            style="width: 10px; height: 10px; background-color: gray; top: 50%; left: calc(50% + 80px); transform: translateY(-50%);"
+            onclick="showTable('水星', '直径约 4880 千米', '离太阳最近的行星')">
+        </div>
+        <!-- 金星 -->
+        <div class="planet absolute rounded-full transition-transform duration-300 ease-in-out hover:scale-110"
+            style="width: 15px; height: 15px; background-color: orange; top: 50%; left: calc(50% + 120px); transform: translateY(-50%);"
+            onclick="showTable('金星', '直径约 12103.6 千米', '表面温度很高，有浓厚的大气层')">
+        </div>
+        <!-- 地球 -->
+        <div class="planet absolute rounded-full transition-transform duration-300 ease-in-out hover:scale-110"
+            style="width: 16px; height: 16px; background-color: blue; top: 50%; left: calc(50% + 160px); transform: translateY(-50%);"
+            onclick="showTable('地球', '直径约 12742 千米', '目前已知唯一存在生命的星球')">
+        </div>
+        <!-- 火星 -->
+        <div class="planet absolute rounded-full transition-transform duration-300 ease-in-out hover:scale-110"
+            style="width: 12px; height: 12px; background-color: red; top: 50%; left: calc(50% + 200px); transform: translateY(-50%);"
+            onclick="showTable('火星', '直径约 6779 千米', '与地球环境有一定相似性')">
+        </div>
+    </div>
+    <div id="table-container"
+        class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 p-5 rounded-lg z-100 shadow-lg">
+        <table class="w-full border-collapse">
+            <thead>
+                <tr>
+                    <th class="border border-gray-300 p-3 text-center cursor-pointer bg-gray-100 transition-colors duration-300 ease-in-out hover:bg-gray-200">
+                        行星名称
+                    </th>
+                    <th class="border border-gray-300 p-3 text-center cursor-pointer bg-gray-100 transition-colors duration-300 ease-in-out hover:bg-gray-200">
+                        直径
+                    </th>
+                    <th class="border border-gray-300 p-3 text-center cursor-pointer bg-gray-100 transition-colors duration-300 ease-in-out hover:bg-gray-200">
+                        描述
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- 表格内容将动态更新 -->
+            </tbody>
+        </table>
+        <button id="close-table" class="mt-3 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+            onclick="hideTable()">关闭</button>
+    </div>
+    <script>
+        function showTable(name, diameter, description) {
+            const tableBody = document.getElementById('table-body');
+            tableBody.innerHTML = `
+                <tr>
+                    <td class="border border-gray-300 p-3 text-center">${name}</td>
+                    <td class="border border-gray-300 p-3 text-center">${diameter}</td>
+                    <td class="border border-gray-300 p-3 text-center">${description}</td>
+                </tr>
+            `;
+
+            const tableContainer = document.getElementById('table-container');
+            tableContainer.classList.remove('hidden');
+            tableContainer.classList.add('animate-fade-in');
+        }
+
+        function hideTable() {
+            const tableContainer = document.getElementById('table-container');
+            tableContainer.classList.add('animate-fade-out');
+            setTimeout(() => {
+                tableContainer.classList.remove('animate-fade-out');
+                tableContainer.classList.add('hidden');
+            }, 300);
+        }
+    </script>
+</body>
+
+</html>
+    
