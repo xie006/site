@@ -1,0 +1,27 @@
+<div id="clickableElement" style="width: 300px; height: 200px; background-color: lightblue;">
+    Click anywhere inside this element
+</div>
+<p id="coordinatesDisplay">Coordinates will appear here</p>
+
+<script>
+document.getElementById('clickableElement').addEventListener('click', function(e) {
+    // Get coordinates relative to the element
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Get coordinates relative to the viewport
+    const viewportX = e.clientX;
+    const viewportY = e.clientY;
+    
+    // Get coordinates relative to the page
+    const pageX = e.pageX;
+    const pageY = e.pageY;
+    
+    document.getElementById('coordinatesDisplay').innerHTML = `
+        Element-relative: (${x.toFixed(0)}, ${y.toFixed(0)})<br>
+        Viewport-relative: (${viewportX.toFixed(0)}, ${viewportY.toFixed(0)})<br>
+        Page-relative: (${pageX.toFixed(0)}, ${pageY.toFixed(0)})
+    `;
+});
+</script>

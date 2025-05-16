@@ -1,0 +1,15 @@
+<input type="file" id="htmlInput" accept=".html,.htm">
+<div id="htmlContent"></div>
+
+<script>
+document.getElementById('htmlInput').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        document.getElementById('htmlContent').innerHTML = event.target.result;
+    };
+    reader.readAsText(file);
+});
+</script>

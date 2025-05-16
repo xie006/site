@@ -1,0 +1,29 @@
+<input type="file" id="csvInput" accept=".csv">
+<div id="csvTableContainer"></div>
+
+<script>
+document.getElementById('csvInput').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        const csvData = event.target.result;
+        const rows = csvData.split('\n');
+        let table = '<table border="1">';
+        
+        rows.forEach(row => {
+            table += '<tr>';
+            const cells = row.split(',');
+            cells.forEach(cell => {
+                table += `<td>${cell}</td>`;
+            });
+            table += '</tr>';
+        });
+        
+        table += '</table>';
+        document.getElementById('csvTableContainer').innerHTML = table;
+    };
+    reader.readAsText(file);
+});
+</script>
